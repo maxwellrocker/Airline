@@ -6,6 +6,7 @@
 airplane::airplane()
 {
     //ctor
+    name = "";
     seat = 0;
     range = 0;
 }
@@ -19,17 +20,20 @@ int airplane::newairplane(lua_State* L)
 {
     int         _seat;
     int         _range;
+    string      _name;
     //
     size_t      nbytes;
     airplane*   _airplane;
 
     _seat = luaL_checkint(L, 1);
     _range= luaL_checkint(L, 2);
-    nbytes= sizeof(airplane) + sizeof(int)*I_WORD(2);
+    _name = luaL_checkstring(L, 3);
+    nbytes= sizeof(airplane) + sizeof(int)*I_WORD(2) + sizeof(_name);
     _airplane = (airplane*)lua_newuserdata(L, nbytes);
 
     _airplane->seat = _seat;
     _airplane->range= _range;
+    _airplane->name = _name;
 
     return 1;
 }
@@ -46,6 +50,14 @@ int airplane::getRange(lua_State* L)
 {
     airplane* a = (airplane*)lua_touserdata(L, 1);
     lua_pushinteger(L, a->range);
+
+    return 1;
+}
+
+int airplane::getName(lua_State* L)
+{
+    airplane* a = (airplane*)lua_touserdata(L, 1);
+    lua_pushstring(L, a->name.c_str());
 
     return 1;
 }
@@ -70,6 +82,17 @@ int airplane::setRange(lua_State* L)
     return 1;
 }
 
+int airplane::setName(lua_State* L)
+{
+    airplane* a = (airplane*)lua_touserdata(L, 1);
+    string _name = luaL_checkstring(L, 2);
+
+    a->name = _name;
+
+    return 1;
+}
+
+
 void airplane::setSeat(int _seat)
 {
     seat = _seat;
@@ -82,6 +105,12 @@ void airplane::setRange(int _range)
     return;
 }
 
+void airplane::setName(string _name)
+{
+    name = _name;
+    return;
+}
+
 
 int airplane::getSeat()
 {
@@ -91,5 +120,10 @@ int airplane::getSeat()
 int airplane::getRange()
 {
     return range;
+}
+
+string airplane::getName()
+{
+    return name;
 }
 

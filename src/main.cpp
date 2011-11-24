@@ -20,8 +20,10 @@ static const struct luaL_Reg airplanelib[] = {
     {"new",     airplane::newairplane},
     {"getseat", airplane::getSeat},
     {"getrange",airplane::getRange},
+    {"getname", airplane::getName},
     {"setseat", airplane::setSeat},
     {"setrange",airplane::setRange},
+    {"setname", airplane::setName},
     {NULL, NULL}
 };
 

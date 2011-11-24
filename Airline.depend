@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1321865978 source:d:\project\lua\airline\src\airplane.cpp
+1321951416 source:d:\project\lua\airline\src\airplane.cpp
 	"../include/airplane.h"
 
-1321866369 d:\project\lua\airline\include\airplane.h
+1321951286 d:\project\lua\airline\include\airplane.h
 	<stdio.h>
 	<string.h>
 	<string>
@@ -11,7 +11,7 @@
 	"lualib.h"
 	"lauxlib.h"
 
-1321866480 source:d:\project\lua\airline\src\main.cpp
+1321951491 source:d:\project\lua\airline\src\main.cpp
 	"../include/airplane.h"
 	"lua.h"
 	"lualib.h"
